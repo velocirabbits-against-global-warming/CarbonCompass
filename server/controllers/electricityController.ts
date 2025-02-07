@@ -48,7 +48,7 @@ const electricityController: ElectricityController = {
         { type, electricity_unit, electricity_value, country, state },
         {
           headers: {
-            Authorization: 'Bearer ntmUMMGksam7lMdDs3g1A',
+            Authorization: 'Bearer AxECWl4yoSTCmSsDS0YbQ',
             'Content-Type': 'application/json',
           },
         }
