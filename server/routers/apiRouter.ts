@@ -4,6 +4,7 @@ const apiRouter = express.Router();
 import electricityController from '../controllers/electricityController.ts';
 import vehicleController from '../controllers/vehicleController.ts';
 import openAiController from '../controllers/openAiController.ts';
+import chartController from '../controllers/chartController.ts';
 
 // * TEST
 
@@ -42,6 +43,12 @@ apiRouter.post('/vehicle', vehicleController.getEmissions, (req, res) => {
 // * ROUTE - OPENAI
 apiRouter.post('/openai/', openAiController.generateResponse, (req, res) => {
   res.status(200).json({ aiResponse: res.locals.aiResponse });
+});
+
+// * CHART Endpoint
+
+apiRouter.get('/chart-data/electric-emissions/state', chartController.getTotalEmissionsData, (req, res) => {
+  res.status(200).json({ data: res.locals.chartData });
 });
 
 export default apiRouter;
