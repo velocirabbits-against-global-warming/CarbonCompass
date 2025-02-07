@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-import apiRouter from './routers/apiRouter';
+import apiRouter from './routers/apiRouter.ts';
 
 
 // * CORS

@@ -12,7 +12,8 @@ describe('Server Functionality', () => {
   describe('Testing route /api/test', () => {
     it('responses with 200 status and text/html content type', async () => {
       const res = await api.get('/api/test');
-      //expect(res.Content-Type.tobBe( /text\/html/));
+      console.log(res.headers['content-type']);
+      expect(res.headers['content-type']).to.include('text/html');
       expect(res.text).toBe('The Test is Working!');
       expect(res.status).toBe(200);
     });
@@ -27,12 +28,15 @@ describe('Server Functionality', () => {
       state: 'fl',
     };
 
-    it('responses with 200 status and text/html content type', async () => {
+    it('responses with 200 status and application/json', async () => {
       const res = await api.post('/api/electricity').send(requestBody);
-      console.log(res);
-      //expect(res.headers['content-type'].toMatch(/application\/json/));
-      //expect(res.text).toBe('The Test is Working!');
-      expect(res.status).toBe(500);
+      //console.log(res);
+      expect(res.headers['content-type']).to.include('application/json');
+      expect(JSON.parse(res.text)).to.deep.equal({
+        carbon_lb: 36840.29,
+        carbon_kg: 16710.48,
+      });
+      expect(res.status).toBe(200);
     });
   });
 
@@ -44,12 +48,23 @@ describe('Server Functionality', () => {
       vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9',
     };
 
-    it('responses with 200 status and text/html content type', async () => {
+    it('responses with 200 status and application/json', async () => {
       const res = await api.post('/api/vehicle').send(requestBody);
-      console.log(res);
-      //expect(res.headers['content-type'].toMatch(/application\/json/));
-      //expect(res.text).toBe('The Test is Working!');
-      expect(res.status).toBe(500);
+      //console.log(res);
+      expect(res.headers['content-type']).to.include('application/json');
+      expect(JSON.parse(res.text)).to.deep.equal({
+        carbon_lb: 81.64,
+        carbon_kg: 37.03,
+      });
+      expect(res.status).toBe(200);
+    });
+  });
+  describe('Testing route application/json', () => {
+    it('responses with 200 status and application/json content type', async () => {
+      const res = await api.get('/api/vehicle/makes');
+      console.log(res.headers['content-type']);
+      expect(res.headers['content-type']).to.include('application/json');
+      expect(res.status).toBe(200);
     });
   });
 });
