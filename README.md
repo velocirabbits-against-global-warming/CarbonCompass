@@ -53,7 +53,7 @@ You can make your own API keys to run this application by creating an account wi
 
 ####  Scratch phase contributors:
 - Amit Haror
-- Amrita
+- Amrita Bahadur
 - Mickael Contreras
 - MJ Barksdalt
 
