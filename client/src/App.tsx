@@ -11,7 +11,7 @@ function App() {
     <div>
       <ClientForm />
       <AiForm />
-      <Chart/>
+      <Chart />
     </div>
   );
 }

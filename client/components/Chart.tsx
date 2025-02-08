@@ -25,13 +25,17 @@ const Chart = () => {
           const json = await response.json();
           console.log("json.data in chart fetch", json.data)
           setEmissionsFetchData(json.data)
-          
+          return json.data
         } catch (err) {
           if (err instanceof Error)
           console.log(err.message);
         }
     }
 
+
+    function shuffleArray(array:any) {
+        return array.sort(() => Math.random() - 0.5);
+    }
 
 
     const data = {
@@ -50,43 +54,50 @@ const Chart = () => {
 
     useEffect(() => {
 
-        (async () => {
+        async function fetchAndProcessData () {
             try {
-              const data = await getData();
-              // Handle the data
+                const data:any = await getData();
+                console.log("data after getData run in useEffect", data)
+                const labels:any= []
+                const emissionNumbers:any = []
+                const backgroundColors:any = []
+            
+                data.forEach((element, i) => {
+                    labels.push(element['state'])
+                    emissionNumbers.push(element['estimate_emissions'])
+                    const hue = (i * 360) / data.length;
+                    backgroundColors.push(`hsl(${hue}, 70%, 60%)`)
+                });
+
+                console.log("labels in useEffect", labels)
+                console.log("emissionNumbers in useEffect", emissionNumbers)
+                console.log("backgroundColor", backgroundColors)
+
+                setEmissionsLabel(labels)
+                setEmissionsNumbers(emissionNumbers)
+                setBackgroundColors(shuffleArray(backgroundColors.slice()))
+
+
+                console.log("data ran in useEffect", data)
+              
             } catch (error) {
-              // Handle errors
+              
             }
-          })();
-        // * run data extraction func here
-        const labels:any= []
-        const emissionNumbers:any = []
-        const backgroundColors:any = []
+        };
+
+        fetchAndProcessData()
+
         
-
-        emissionsFetchData.forEach((element, i) => {
-            labels.push(element['state'])
-            emissionNumbers.push(element['estimate_emissions'])
-            const hue = (i * 360) / emissionsFetchData.length;
-            backgroundColors.push(`hsl(${hue}, 70%, 60%)`)
-        });
-
-        console.log("labels in useEffect", labels)
-        console.log("emissionNumbers in useEffect", emissionNumbers)
-        console.log("backgroundColor", backgroundColors)
-
-        setEmissionsLabel(labels)
-        setEmissionsNumbers(emissionNumbers)
-        setBackgroundColors(backgroundColors)
-
-
-        console.log("data ran in useEffect", data)
     }, [])
 
 
 
-    return <Doughnut data={data} />
-
+    return (
+        <div>
+            <h1>Emissions By US State</h1>
+            <Doughnut data={data} />
+        </div>
+    )
 }
 
 export default Chart;
