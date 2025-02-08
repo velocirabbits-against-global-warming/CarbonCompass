@@ -97,7 +97,7 @@ const vehicleController: VehicleController = {
         { type, distance_unit, distance_value, vehicle_model_id },
         {
           headers: {
-            Authorization: 'Bearer AxECWl4yoSTCmSsDS0YbQ',
+            Authorization: 'Bearer embmbwz2XYsr6Dblr9QdIg',
             'Content-Type': 'application/json',
           },
         }
