@@ -40,8 +40,10 @@ npm run test
 ![React](https://img.shields.io/badge/React-black?style=for-the-badge&logo=React) <br>
 ![Node.js](https://img.shields.io/badge/Node.js-black?style=for-the-badge&logo=Node.js) <br>
 
-### Just for Fun!
+### Dependencies used on our Front End:
 ![OpenAi](https://img.shields.io/badge/OpenAI-black?style=for-the-badge&logo=OpenAI) <br>
+![Static Badge](https://img.shields.io/badge/Chart.js-black?style=for-the-badge&logo=Chart.js) <br>
+
 
 ### API Keys:
 You can make your own API keys to run this application by creating an account with <a href="https://www.carboninterface.com/">Carbon Interface </a> and <a href="https://openai.com/index/openai-api/">OpenAI</a>
